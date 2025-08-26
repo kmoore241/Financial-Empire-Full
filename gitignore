@@ -1,0 +1,40 @@
+# Node modules and build outputs
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Firebase/Netlify/Vercel settings
+.firebase/
+.firebaserc
+.netlify/
+.vercel/
+
+# Coverage and test output
+coverage/
+*.lcov
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.tgz
+*.zip

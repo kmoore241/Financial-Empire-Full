@@ -1,0 +1,9 @@
+# CODEOWNERS for Financial Empire
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+*       @your-github-username
+docs/   @your-github-username
+.github/ @your-github-username
+
+# Add additional owners below as needed:
+# src/components/ @other-contributor

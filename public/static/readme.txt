@@ -1,0 +1,1 @@
+Place your static images and assets here.

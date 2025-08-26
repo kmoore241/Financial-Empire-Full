@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/out": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
