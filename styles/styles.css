@@ -1,0 +1,20 @@
+--- /dev/null
++++ b/src/styles.css
+@@ -0,0 +1,15 @@
++@tailwind base;
++@tailwind components;
++@tailwind utilities;
++
++@layer base {
++  :root {
++    --empire: #232946;
++    --empire-light: #E7E7FF;
++    --empire-accent: #FF8906;
++    --empire-soft: #A7A7D7;
++    --empire-error: #FF1B1C;
++  }
++  
++  body {
++    font-family: 'Inter', ui-sans-serif, system-ui;
++  }
++}
