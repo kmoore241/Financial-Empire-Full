@@ -47,7 +47,7 @@ We expect everyone to follow our [Code of Conduct](./CODE_OF_CONDUCT.md) and tre
 ## Need Help?
 
 - For security issues, see [SECURITY.md](./SECURITY.md).
-- For questions, open a [Discussion](https://github.com/[your-org]/financial-empire/discussions) or contact [support@yourdomain.com](mailto:support@yourdomain.com).
+- For questions, open a [Discussion](https://github.com/[your-org]/financial-empire/discussions) or contact [kennedymooredesigner@gmail.com](mailto:kennedymooredesigner@gmail.com).
 
 ---
 
