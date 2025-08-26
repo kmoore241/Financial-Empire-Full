@@ -1,0 +1,1 @@
+// Performance mode toggle logic
