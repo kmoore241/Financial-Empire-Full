@@ -1,0 +1,10 @@
+{
+  "userId": "123",
+  "completedLessons": [
+    "intro",
+    "bot"
+  ],
+  "quizScores": {
+    "introQuiz": 80
+  }
+}

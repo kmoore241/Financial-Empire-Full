@@ -1,0 +1,17 @@
+import type { AppProps } from 'next/app'
+import { ThemeProvider } from '@/components/ui/theme-provider'
+import { AuthProvider } from '@/context/AuthContext'
+import { NotificationProvider } from '@/context/NotificationContext'
+import '@/styles/globals.css'
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <NotificationProvider>
+          <Component {...pageProps} />
+        </NotificationProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  )
+}

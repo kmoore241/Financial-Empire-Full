@@ -1,0 +1,10 @@
+{
+  "dashboard": {
+    "title": "Tablero",
+    "loading": "Cargando datos…"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión"
+  }
+}

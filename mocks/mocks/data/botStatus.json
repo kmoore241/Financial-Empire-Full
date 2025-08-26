@@ -1,0 +1,6 @@
+{
+  "botName": "SafeBot",
+  "running": true,
+  "lastDecision": "buy",
+  "lastPrice": 50000
+}

@@ -1,0 +1,10 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "loading": "Loading data…"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out"
+  }
+}

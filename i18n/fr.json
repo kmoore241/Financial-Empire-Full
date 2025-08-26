@@ -1,0 +1,10 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord",
+    "loading": "Chargement des données…"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter"
+  }
+}

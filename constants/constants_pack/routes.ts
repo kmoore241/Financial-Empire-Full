@@ -1,0 +1,16 @@
+export const ROUTES = {
+  dashboard: '/',
+  login: '/login',
+  signup: '/signup',
+  safeBot: '/safe-bot',
+  aggressiveBot: '/aggressive-bot',
+  manualBot: '/manual-bot',
+  revenue: '/revenue',
+  confidence: '/confidence',
+  quiz: '/quiz',
+  certificate: '/certificate',
+  settings: '/settings',
+  wallet: '/wallet',
+  admin: '/admin',
+  notFound: '*',
+};
