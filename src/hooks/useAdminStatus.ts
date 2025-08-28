@@ -1,15 +1,19 @@
+/* src/hooks/useAdminStatus.ts */
+import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase"; // Adjust this import to your Firebase config path
+import { db, auth } from "@/firebase";
 
-type AdminStatus = {
+export type AdminStatus = {
   isAdmin: boolean;
   loading: boolean;
   error: string | null;
 };
 
 /**
- * Checks if the current Firebase user is an admin (via Firestore roles).
- * Returns { isAdmin, loading, error }
+ * Checks whether the current Firebase Auth user is an admin.
+ * Looks up Firestore doc at: admins/{uid}
+ * - If no user is signed in, returns { isAdmin:false, loading:false }.
+ * - Adjust the collection/path or field shape as needed for your app.
  */
 export function useAdminStatus(): AdminStatus {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -17,37 +21,38 @@ export function useAdminStatus(): AdminStatus {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Reset state before checking admin status
-    setError(null);
-    setIsAdmin(false);
-    setLoading(true);
+    // Only run on the client; during SSR we'll just short-circuit.
+    const uid =
+      typeof window === "undefined" ? null : auth.currentUser?.uid ?? null;
 
-    const auth = getAuth();
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        setIsAdmin(false);
-        setLoading(false);
-        return;
-      }
+    if (!uid) {
+      setIsAdmin(false);
+      setLoading(false);
+      return;
+    }
 
+    let cancelled = false;
+
+    (async () => {
       try {
-        const adminDocRef = doc(db, "admins", user.uid);
-        const adminDoc = await getDoc(adminDocRef);
-
-        if (adminDoc.exists() && adminDoc.data().isAdmin) {
-          setIsAdmin(true);
-        } else {
+        const snap = await getDoc(doc(db, "admins", uid));
+        // Expecting a doc that either exists (admin) or has { isAdmin: true }.
+        const value =
+          snap.exists() && (snap.data()?.isAdmin ?? true) ? true : false;
+        if (!cancelled) setIsAdmin(value);
+      } catch (e: any) {
+        if (!cancelled) {
+          setError(e?.message ?? "Failed to check admin status");
           setIsAdmin(false);
         }
-        setLoading(false);
-      } catch (err: any) {
-        setError(err.message || "Failed to check admin status.");
-        setIsAdmin(false);
-        setLoading(false);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-    });
+    })();
 
-    return () => unsubscribe();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return { isAdmin, loading, error };
