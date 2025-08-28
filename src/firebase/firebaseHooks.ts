@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "./firebaseConfig";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { onSnapshot, doc } from "firebase/firestore";
+import { onAuthStateChanged, type User } from "firebase/auth";
+import {
+  doc,
+  onSnapshot,
+  type DocumentData,
+  type FirestoreError,
+} from "firebase/firestore";
 
 export function useAuthState() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsub = onAuthStateChanged(auth, (u) => {
+      setUser(u);
       setLoading(false);
     });
     return () => unsub();
@@ -18,18 +23,29 @@ export function useAuthState() {
   return { user, loading };
 }
 
-export function useFirestoreDoc(path: string) {
-  const [data, setData] = useState<any>(null);
+export function useFirestoreDoc<T extends DocumentData = DocumentData>(path: string) {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<FirestoreError | null>(null);
 
   useEffect(() => {
-    const ref = doc(db, ...path.split('/'));
-    const unsub = onSnapshot(ref, (snapshot) => {
-      setData(snapshot.exists() ? snapshot.data() : null);
-      setLoading(false);
-    });
+    const safe = path.replace(/^\/+|\/+$/g, "");
+    const ref = doc(db, safe); 
+
+    const unsub = onSnapshot(
+      ref,
+      (snapshot) => {
+        setData(snapshot.exists() ? (snapshot.data() as T) : null);
+        setLoading(false);
+      },
+      (err) => {
+        setError(err);
+        setLoading(false);
+      }
+    );
+
     return () => unsub();
   }, [path]);
 
-  return { data, loading };
+  return { data, loading, error };
 }
