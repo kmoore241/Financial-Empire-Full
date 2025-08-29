@@ -23,10 +23,10 @@ export async function sendLog(entry: LogEntry, retries = 3): Promise<void> {
   try {
     await fetch('/api/logs', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(authToken && { Authorization: `Bearer ${authToken}` }),
-      },
+     headers: {
+  'Content-Type': 'application/json',
+  ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+},
       body: JSON.stringify(payload),
     });
   } catch (err) {
