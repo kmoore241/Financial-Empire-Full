@@ -1,9 +1,3 @@
-/* src/services/botService.ts
-   Unified service:
-   - First tries Firestore: botStatus/{botName}
-   - Falls back to fetch(`${NEXT_PUBLIC_API_BASE_URL || '/api'}/bot-status/${botName}`)
-   - Caches result in sessionStorage on the client
-*/
 import { db } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -27,7 +21,7 @@ export async function getBotStatus(
   botName: string,
   opts?: GetBotStatusOptions
 ): Promise<BotStatus> {
-  // 1) Try Firestore
+
   try {
     const snap = await getDoc(doc(db, "botStatus", botName));
     if (snap.exists()) {
@@ -51,10 +45,8 @@ export async function getBotStatus(
       return merged;
     }
   } catch (e) {
-    // Firestore unavailable or error; fall through to API
   }
 
-  // 2) Fallback to API route
   try {
     const res = await fetch(
       `${API_BASE}/bot-status/${encodeURIComponent(botName)}`,
