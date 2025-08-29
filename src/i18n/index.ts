@@ -1,29 +1,31 @@
+'use client';
+
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import en from './en.json';
-import es from './es.json';
-import fr from './fr.json';
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      es: { translation: es },
-      fr: { translation: fr },
-    },
-    supportedLngs: ['en', 'es', 'fr'],
-    nonExplicitSupportedLngs: true,
-    fallbackLng: 'en',
-    detection: {
-      order: ['navigator', 'htmlTag', 'path', 'subdomain'],
-      caches: ['localStorage', 'cookie'],
-    },
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+// If you have more languages (e.g., es.json), import them and extend resources.
+import en from './en.json';
+
+const resources = {
+  en: { translation: en },
+  // es: { translation: es },
+};
+
+if (!i18n.isInitialized) {
+  i18n
+    .use(LanguageDetector) // browser-only
+    .use(initReactI18next)
+    .init({
+      resources,
+      fallbackLng: 'en',
+      interpolation: { escapeValue: false },
+      detection: {
+        order: ['querystring', 'cookie', 'localStorage', 'navigator'],
+        caches: ['localStorage', 'cookie'],
+      },
+    })
+    .catch(() => { /* swallow init errors in prod */ });
+}
 
 export default i18n;
