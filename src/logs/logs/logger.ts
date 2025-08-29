@@ -1,43 +1,49 @@
-import { LogEntry } from './types';
-import { sendLog } from './logService';
+/* src/logs/logger.ts */
+export type LogMeta = Record<string, unknown>;
 
-/**
- * Determines if logs should be printed to console based on environment.
- */
-function shouldLog(): boolean {
-  return process.env.NODE_ENV !== 'production';
+type Level = "error" | "warn" | "info";
+
+function makePayload(level: Level, message: string, meta?: LogMeta, err?: unknown) {
+  return {
+    level,
+    message,
+    meta,
+    error:
+      err instanceof Error
+        ? { name: err.name, message: err.message, stack: err.stack }
+        : undefined,
+    timestamp: new Date().toISOString(),
+  };
 }
 
-/**
- * Logs an info-level message.
- */
-export function logInfo(message: string, data?: any) {
-  if (!shouldLog()) return;
-  const timestamp = new Date().toISOString();
-  console.info(`[INFO] [${timestamp}] ${message}`, data ?? '');
-  // Optionally forward to remote
-  // sendLog({ level: 'info', message, data, timestamp });
-}
+export function logError(message: string, meta?: LogMeta, err?: unknown) {
+  // Always log locally
+  // eslint-disable-next-line no-console
+  console.error(message, meta, err);
 
-/**
- * Logs a warning-level message.
- */
-export function logWarn(message: string, data?: any) {
-  if (!shouldLog()) return;
-  const timestamp = new Date().toISOString();
-  console.warn(`[WARN] [${timestamp}] ${message}`, data ?? '');
-  // Optionally forward to remote
-  // sendLog({ level: 'warn', message, data, timestamp });
-}
-
-/**
- * Logs an error-level message and forwards to remote service.
- */
-export function logError(message: string, data?: any) {
-  const timestamp = new Date().toISOString();
-  if (shouldLog()) {
-    console.error(`[ERROR] [${timestamp}] ${message}`, data ?? '');
+  // Optional: forward to an API if configured (works client or server)
+  const endpoint = process.env.NEXT_PUBLIC_LOG_API;
+  if (endpoint && typeof fetch !== "undefined") {
+    try {
+      fetch(`${endpoint}/log`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(makePayload("error", message, meta, err)),
+        // keepalive lets the browser send the request on page unloads
+        keepalive: true,
+      }).catch(() => {});
+    } catch {
+      /* swallow */
+    }
   }
-  // Always send errors to remote logging service
-  sendLog({ level: 'error', message, data, timestamp });
+}
+
+export function logWarn(message: string, meta?: LogMeta) {
+  // eslint-disable-next-line no-console
+  console.warn(message, meta);
+}
+
+export function logInfo(message: string, meta?: LogMeta) {
+  // eslint-disable-next-line no-console
+  console.info(message, meta);
 }
