@@ -1,6 +1,6 @@
 /* src/services/sentimentService.ts
    Market Sentiment service:
-   1) Try Firestore doc: market/sentiment  (shape flexible, expects { score: number, updatedAt?: string, ... })
+   1) Try Firestore doc: market/sentiment  (expects { score: number, updatedAt?: string, ... })
    2) Fallback to API:   GET ${NEXT_PUBLIC_API_BASE_URL || '/api'}/sentiment
    3) Cache in sessionStorage on the client for a short TTL to avoid spamming sources.
 */
@@ -15,7 +15,7 @@ export type SentimentLabel =
   | "extreme_greed";
 
 export type MarketSentiment = {
-  score: number;           // Prefer 0–100, but -100..100 also handled
+  score: number;           // Prefer 0–100, but -100..100 or 0..1 also accepted
   label: SentimentLabel;
   updatedAt?: string;
   sources?: string[];
