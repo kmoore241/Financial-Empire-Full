@@ -54,6 +54,9 @@ export async function requestJSON<T = unknown>(
     : `${BASE_URL}${path.startsWith('/') ? '' : '/'}${path}`;
 
   const { signal, cleanup } = withTimeout(init.signal, timeoutMs ?? 15_000);
+  // Coerce possible null to undefined to satisfy AbortSignal | undefined
+  const parentSignal: AbortSignal | undefined = init?.signal ?? undefined;
+  const { signal, cleanup } = withTimeout(parentSignal, timeoutMs ?? 15_000);
 
   try {
     const res = await fetch(url, { ...init, signal });
