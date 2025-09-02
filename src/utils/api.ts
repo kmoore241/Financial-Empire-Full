@@ -53,16 +53,19 @@ export async function requestJSON<T = unknown>(
     ? path
     : `${BASE_URL}${path.startsWith('/') ? '' : '/'}${path}`;
 
-  const { signal, cleanup } = withTimeout(init.signal, timeoutMs ?? 15_000);
   // Coerce possible null to undefined to satisfy AbortSignal | undefined
   const parentSignal: AbortSignal | undefined = init?.signal ?? undefined;
-  const { signal: timeoutSignal, cleanup } = withTimeout(parentSignal, timeoutMs ?? 15_000);
+  const { signal: timeoutSignal, cleanup: cleanupTimeout } = withTimeout(
+    parentSignal,
+    timeoutMs ?? 15_000
+  );
 
   try {
     const res = await fetch(url, { ...init, signal: timeoutSignal });
 
     // Handle 204 / empty bodies safely
-    const isNoContent = res.status === 204 || res.headers.get('content-length') === '0';
+    const isNoContent =
+      res.status === 204 || res.headers.get('content-length') === '0';
 
     let data: unknown = null;
     if (!isNoContent) {
@@ -84,7 +87,7 @@ export async function requestJSON<T = unknown>(
 
     return data as T;
   } finally {
-    cleanup();
+    cleanupTimeout();
   }
 }
 
