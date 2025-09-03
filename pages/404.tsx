@@ -1,5 +1,3 @@
-import View from "@/components/pages/pages/NotFound";
-
-export default function Page() {
-  return <View />;
+export default function NotFound() {
+  return <div style={{padding: 24}}>404 – Page not found</div>;
 }

@@ -1,4 +1,4 @@
-import View from "@/components/pages/pages/Terms";
+import View from "@/components/pages/Terms";
 
 export default function Page() {
   return <View />;

@@ -1,4 +1,4 @@
-import View from "@/components/pages/pages/Privacy";
+import View from "@/components/pages/Privacy";
 
 export default function Page() {
   return <View />;
