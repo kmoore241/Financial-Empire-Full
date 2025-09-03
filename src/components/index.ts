@@ -1,6 +1,6 @@
 // src/components/index.ts
 export * from "./ui";
-export * from "./pages";
+export * from "../../pages";
 export * from "./common";
 export * from "./bots";
 export * from "./drills";
