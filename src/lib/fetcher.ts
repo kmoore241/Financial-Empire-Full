@@ -1,4 +1,5 @@
-import { getJSON } from '@/utils/api';
-export async function fetcher<T>(url: string): Promise<T> {
-  return getJSON<T>(url);
+export async function jsonFetcher<T>(url: string): Promise<T> {
+  const r = await fetch(url, { headers: { accept: 'application/json' } });
+  if (!r.ok) throw new Error(`Fetch ${url} failed: ${r.status}`);
+  return r.json() as Promise<T>;
 }

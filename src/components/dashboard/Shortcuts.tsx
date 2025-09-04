@@ -1,20 +1,24 @@
+import * as React from 'react';
 import Link from 'next/link';
-import { Card, CardTitle } from '@/components/ui';
-
+import { Card } from '@/components/ui';
 const links = [
-  { label: 'New Order', href: '/trade' },
-  { label: 'Deposit', href: '/wallet' },
-  { label: 'Bots', href: '/bots' },
-  { label: 'Settings', href: '/settings' }
+  { href: '/bots', label: 'Bots' },
+  { href: '/wallet', label: 'Wallet' },
+  { href: '/settings', label: 'Settings' },
+  { href: '/news', label: 'News' },
+  { href: '/academy', label: 'Academy' },
 ];
-
 export default function Shortcuts() {
   return (
     <Card>
-      <CardTitle>Shortcuts</CardTitle>
-      <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="mb-2 text-sm text-gray-500">Shortcuts</div>
+      <div className="grid grid-cols-2 gap-2">
         {links.map(l => (
-          <Link key={l.href} href={l.href} className="rounded-lg border px-3 py-2 text-center hover:bg-gray-50">
+          <Link
+            key={l.href}
+            href={l.href}
+            className="rounded-lg border border-gray-200 px-3 py-2 text-sm hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800"
+          >
             {l.label}
           </Link>
         ))}

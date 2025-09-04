@@ -1,28 +1,35 @@
+import * as React from 'react';
 import useSWR from 'swr';
-import { formatDistanceToNowStrict } from 'date-fns';
-import { Card, CardTitle } from '@/components/ui';
-import { fetcher } from '@/lib/fetcher';
-import type { NewsItem } from '@/pages/api/news';
-
+import { jsonFetcher } from '@/lib/fetcher';
+import { Card } from '@/components/ui';
+type NewsItem = { title: string; url: string; source?: string; publishedAt?: string };
 export default function NewsFeed() {
-  const { data, isLoading, error } = useSWR<NewsItem[]>('/api/news', fetcher);
-
+  const { data, error, isLoading } = useSWR<NewsItem[]>('/api/news', jsonFetcher);
   return (
     <Card className="md:col-span-2">
-      <CardTitle>News Feed</CardTitle>
-      <div className="mt-3 space-y-3">
-        {isLoading && <div className="h-24 animate-pulse rounded-lg bg-gray-50" />}
-        {error && <div className="text-red-600 text-sm">Failed to load news.</div>}
-        {data?.map(n => (
-          <a key={n.id} href={n.url} target="_blank" rel="noreferrer"
-             className="block rounded-lg px-3 py-2 hover:bg-gray-50">
-            <div className="font-medium">{n.title}</div>
-            <div className="text-xs text-gray-500">
-              {n.source} • {formatDistanceToNowStrict(new Date(n.publishedAt))} ago
-            </div>
-          </a>
-        ))}
-      </div>
+      <div className="text-sm text-gray-500">News Feed</div>
+      {isLoading && (
+        <div className="mt-3 space-y-2">
+          <div className="h-4 w-3/4 animate-pulse rounded bg-gray-100 dark:bg-gray-800" />
+          <div className="h-4 w-2/3 animate-pulse rounded bg-gray-100 dark:bg-gray-800" />
+          <div className="h-4 w-1/2 animate-pulse rounded bg-gray-100 dark:bg-gray-800" />
+        </div>
+      )}
+      {error && <div className="mt-3 text-sm text-red-600">Failed to load news.</div>}
+      {!!data?.length && (
+        <ul className="mt-3 space-y-3">
+          {data.slice(0, 6).map((n, i) => (
+            <li key={i} className="leading-snug">
+              <a className="text-blue-600 hover:underline" href={n.url} target="_blank" rel="noreferrer">
+                {n.title}
+              </a>
+              <div className="text-xs text-gray-500">
+                {n.source ?? 'Source'}{n.publishedAt ? ` • ${new Date(n.publishedAt).toLocaleString()}` : ''}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </Card>
   );
 }

@@ -2,27 +2,14 @@ import * as React from 'react';
 import useSWR from 'swr';
 import { jsonFetcher } from '@/lib/fetcher';
 import { Card } from '@/components/ui';
-
-type Trade = {
-  id: string;
-  time: string; // ISO
-  symbol: string;
-  side: 'BUY' | 'SELL';
-  qty: number;
-  price: number;
-  pnl?: number;
-};
-
+type Trade = { id: string; time: string; symbol: string; side: 'BUY'|'SELL'; qty: number; price: number; pnl?: number; };
 export default function RecentTrades() {
   const { data, error, isLoading } = useSWR<Trade[]>('/api/trades', jsonFetcher);
-
   return (
     <Card>
       <div className="mb-2 text-sm text-gray-500">Recent Trades</div>
-
       {isLoading && <div className="text-sm text-gray-500">Loading…</div>}
       {error && <div className="text-sm text-red-600">Failed to load trades.</div>}
-
       {!!data?.length && (
         <table className="w-full text-sm">
           <thead className="text-gray-500">
