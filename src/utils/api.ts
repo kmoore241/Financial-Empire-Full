@@ -3,11 +3,13 @@ import type { ChartCandle } from '@/types';
 
 /** Base API URL (Vite or CRA), fallback to /api */
 export const BASE_URL =
-  // Vite
-  (typeof import.meta !== 'undefined' &&
+  // Next.js public env (preferred)
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  // Vite (legacy)
+  ((typeof import.meta !== 'undefined' &&
     (import.meta as any).env &&
-    (import.meta as any).env.VITE_API_BASE_URL) ??
-  // CRA
+    (import.meta as any).env.VITE_API_BASE_URL) as string | undefined) ??
+  // CRA (legacy)
   process.env.REACT_APP_API_BASE_URL ??
   '/api';
 

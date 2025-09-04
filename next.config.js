@@ -19,4 +19,9 @@ const nextConfig = {
     }]
   }
 };
-module.exports = nextConfig;
+module.exports = {
+  reactStrictMode: true,
+  pageExtensions: ['ts','tsx'], // remove later if you really need JS pages
+  images: { domains: ['localhost','res.cloudinary.com','images.unsplash.com','files.stripe.com'] },
+  experimental: { typedRoutes: false },
+};
