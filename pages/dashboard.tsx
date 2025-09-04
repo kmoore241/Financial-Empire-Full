@@ -9,7 +9,7 @@ import Shortcuts from '@/components/dashboard/Shortcuts';
 
 // Only this line; remove any normal import for PnLWidget
 const PnLWidget = dynamic(
-  () => import('@/components/bots/pnlwidget').then(m => m.default),
+  () => import('@/components/bots/PnLWidget').then(m => m.default),
   { ssr: false }
 );
 
