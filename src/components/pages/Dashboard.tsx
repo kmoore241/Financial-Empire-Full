@@ -6,9 +6,9 @@ import NewsFeed from '@/components/dashboard/NewsFeed';
 import RecentTrades from '@/components/dashboard/RecentTrades';
 import MarketSentiment from '@/components/dashboard/MarketSentiment';
 import Shortcuts from '@/components/dashboard/Shortcuts';
-import PnLWidget from '@/components/bots/pnlwidget';
 
-const PnLWidget = dynamic(() => import('@/components/bots/PnLWidget').then(m => m.PnLWidget), { ssr: false });
+// client-only PnL widget (default export)
+const PnLWidget = dynamic(() => import('@/components/bots/PnLWidget'), { ssr: false });
 
 export default function Dashboard(): JSX.Element {
   const [broadcast, setBroadcast] = React.useState('');
@@ -29,7 +29,9 @@ export default function Dashboard(): JSX.Element {
         <NewsFeed />
         <Card>
           <div className="text-sm text-gray-500">Performance</div>
-          <div className="mt-3"><PnLWidget /></div>
+          <div className="mt-3">
+            <PnLWidget />
+          </div>
         </Card>
       </div>
 
