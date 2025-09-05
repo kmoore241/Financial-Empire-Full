@@ -1,5 +1,13 @@
 // src/components/ui/index.ts
-export { Card } from './Card';
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from './card';
+
 export { SkipLink } from './SkipLink';
 export { ErrorBoundary } from './ErrorBoundary';
 export { ThemeProvider } from './theme-provider';

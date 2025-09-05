@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/Card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import SupportResistanceDrill from '@/components/drills/SupportResistanceDrill';
 import MACrossoverDrill from '@/components/drills/MACrossoverDrill';
 import RSIMACDDrill from '@/components/drills/RSIMACDDrill';

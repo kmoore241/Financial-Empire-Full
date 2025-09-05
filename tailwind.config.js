@@ -13,5 +13,5 @@ module.exports = {
       borderRadius: { xl: '1rem', '2xl': '1.25rem' }
     }
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')], require("tailwindcss-animate")
 };
