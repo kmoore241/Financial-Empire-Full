@@ -1,7 +1,7 @@
 // pages/[[...page]].tsx
 import Head from "next/head";
 import type { GetStaticPaths, GetStaticProps } from "next";
-import RenderContent, { builder } from "@builder.io/react";
+import { BuilderComponent, builder } from "@builder.io/react";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -48,7 +48,7 @@ export default function CatchAll({ content }: Props) {
       <Head>
         <title>{content?.data?.title ?? "Page"}</title>
       </Head>
-      <RenderContent model="page" content={content} />
+      <BuilderComponent model="page" content={content} />
     </>
   );
 }
