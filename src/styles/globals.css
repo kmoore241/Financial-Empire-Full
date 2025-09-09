@@ -1,5 +1,8 @@
 /* src/styles/globals.css */
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
 
 @theme {
   --color-brand: #6E56CF;

@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[952],{7924:function(n,u,i){(window.__NEXT_P=window.__NEXT_P||[]).push(["/QuizPage",function(){return i(7565)}])},7565:function(n,u,i){"use strict";i.r(u);var _=i(2676);i(5271),u.default=()=>(0,_.jsx)("div",{children:"Quiz Page"})}},function(n){n.O(0,[888,774,179],function(){return n(n.s=7924)}),_N_E=n.O()}]);

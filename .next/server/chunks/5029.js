@@ -1,1 +1,0 @@
-"use strict";exports.id=5029,exports.ids=[5029],exports.modules={5029:(e,t,r)=>{r.r(t),r.d(t,{ThemeContext:()=>i,ThemeProvider:()=>l});var s=r(997),d=r(6689);let i=(0,d.createContext)(),l=({children:e})=>{let[t,r]=(0,d.useState)(!0);return s.jsx(i.Provider,{value:{darkMode:t,toggleTheme:()=>r(!t)},children:s.jsx("div",{className:t?"theme-dark":"theme-light",children:e})})}}};

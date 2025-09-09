@@ -1,1 +1,0 @@
-"use strict";exports.id=956,exports.ids=[956],exports.modules={956:(e,s,r)=>{r.r(s),r.d(s,{default:()=>t});var d=r(997);function t(){return d.jsx("div",{className:"p-6",children:"Academy page"})}r(6689)}};

@@ -1,86 +1,44 @@
 {
-  "pages/academy/drills.tsx -> @/components/drills/DrillLayout": {
-    "id": 1816,
-    "files": [
-      "static/chunks/816.c5e0756d9a49ef33.js"
-    ]
-  },
-  "pages/academy/drills.tsx -> @/modules/LMS/lms/DrillHub": {
-    "id": 9226,
-    "files": [
-      "static/chunks/226.b4cae4a07f2abda3.js"
-    ]
-  },
-  "pages/academy/news.tsx -> @/components/misc/news/HeadlinesGrid": {
-    "id": 5772,
-    "files": [
-      "static/chunks/772.08e1156f4a197db5.js"
-    ]
-  },
-  "pages/academy/news.tsx -> @/components/misc/news/NewsFeed": {
-    "id": 8999,
-    "files": [
-      "static/chunks/999.9ad0825a412206a2.js"
-    ]
-  },
-  "pages/academy/risk.tsx -> @/components/bots/RiskSettings": {
-    "id": 3976,
-    "files": [
-      "static/chunks/976.1f4210824992d1b5.js"
-    ]
-  },
-  "pages/academy/risk.tsx -> @/components/pages/Academy": {
-    "id": 1937,
-    "files": [
-      "static/chunks/937.bdb4a4af7a13352c.js"
-    ]
-  },
-  "pages/dashboard.tsx -> @/components/bots/PnLWidget": {
-    "id": 7101,
-    "files": [
-      "static/chunks/101.704317ea01401326.js"
-    ]
-  },
   "src/providers/RootProviders.tsx -> @/components/ui/theme-provider": {
-    "id": 624,
+    "id": "src/providers/RootProviders.tsx -> @/components/ui/theme-provider",
     "files": [
-      "static/chunks/624.a566d4f64ac0d92e.js"
+      "static/chunks/src_components_ui_theme-provider_jsx.js"
     ]
   },
   "src/providers/RootProviders.tsx -> @/context/AppContext": {
-    "id": 717,
+    "id": "src/providers/RootProviders.tsx -> @/context/AppContext",
     "files": [
-      "static/chunks/717.25eabbe09b1708b5.js"
+      "static/chunks/src_context_AppContext_tsx.js"
     ]
   },
   "src/providers/RootProviders.tsx -> @/context/AuthContext": {
-    "id": 3545,
+    "id": "src/providers/RootProviders.tsx -> @/context/AuthContext",
     "files": [
-      "static/chunks/545.797222515f8775f7.js"
+      "static/chunks/src_context_AuthContext_tsx.js"
     ]
   },
   "src/providers/RootProviders.tsx -> @/context/BotContext": {
-    "id": 2598,
+    "id": "src/providers/RootProviders.tsx -> @/context/BotContext",
     "files": [
-      "static/chunks/598.c690a01574cd3cf4.js"
+      "static/chunks/src_context_BotContext_tsx.js"
     ]
   },
   "src/providers/RootProviders.tsx -> @/context/NotificationContext": {
-    "id": 9345,
+    "id": "src/providers/RootProviders.tsx -> @/context/NotificationContext",
     "files": [
-      "static/chunks/345.ad2928e62d54077f.js"
+      "static/chunks/src_context_NotificationContext_tsx.js"
     ]
   },
   "src/providers/RootProviders.tsx -> @/context/QuizContext": {
-    "id": 5699,
+    "id": "src/providers/RootProviders.tsx -> @/context/QuizContext",
     "files": [
-      "static/chunks/699.b0249a80ce21a2db.js"
+      "static/chunks/src_context_QuizContext_tsx.js"
     ]
   },
   "src/providers/RootProviders.tsx -> @/context/WalletContext": {
-    "id": 1232,
+    "id": "src/providers/RootProviders.tsx -> @/context/WalletContext",
     "files": [
-      "static/chunks/232.492b8cbdf54311fb.js"
+      "static/chunks/src_context_WalletContext_tsx.js"
     ]
   }
 }

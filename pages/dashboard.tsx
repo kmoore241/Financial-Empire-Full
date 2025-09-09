@@ -1,46 +1,57 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
-import { NotificationBanner } from '@/components/common/common';
-import { Card } from '@/components/ui';
-import NewsFeed from '@/components/dashboard/NewsFeed';
-import RecentTrades from '@/components/dashboard/RecentTrades';
-import MarketSentiment from '@/components/dashboard/MarketSentiment';
-import Shortcuts from '@/components/dashboard/Shortcuts';
+// pages/dashboard.tsx
+import useSWR from "swr";
+import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-// Only this line; remove any normal import for PnLWidget
-const PnLWidget = dynamic(
-  () => import('@/components/bots/PnLWidget').then(m => m.default),
-  { ssr: false }
-);
-
-export default function Dashboard(): JSX.Element {
-  const [broadcast, setBroadcast] = React.useState('');
-  const [active, setActive] = React.useState(false);
-
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setBroadcast(JSON.parse(localStorage.getItem('fe:admin:broadcast') || '""'));
-      setActive(JSON.parse(localStorage.getItem('fe:admin:broadcast:active') || 'false'));
-    }
-  }, []);
+export default function Dashboard() {
+  const { data: pnl } = useSWR("/api/pnl", fetcher);
+  const { data: trades } = useSWR("/api/trades", fetcher);
+  const { data: sentiment } = useSWR("/api/sentiment", fetcher);
 
   return (
-    <div className="space-y-4">
-      {active && broadcast && <NotificationBanner message={broadcast} type="info" />}
+    <>
+      <h1 className="text-2xl font-semibold">Dashboard</h1>
 
-      <div className="grid md:grid-cols-3 gap-4">
-        <NewsFeed />
-        <Card>
-          <div className="text-sm text-gray-500">Performance</div>
-          <div className="mt-3"><PnLWidget /></div>
-        </Card>
-      </div>
+      <section className="mt-6 rounded-2xl border p-6">
+        <h2 className="font-medium">PnL</h2>
+        <div className="h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={pnl?.points ?? []}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="value" dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </section>
 
-      <div className="grid md:grid-cols-3 gap-4">
-        <RecentTrades />
-        <MarketSentiment />
-        <Shortcuts />
-      </div>
-    </div>
+      <section className="mt-6 grid gap-6 md:grid-cols-2">
+        <div className="rounded-2xl border p-6">
+          <h2 className="font-medium">Recent trades</h2>
+          <div className="mt-4 divide-y">
+            {trades?.slice(0, 6)?.map((t: any, i: number) => (
+              <div key={i} className="py-3 flex items-center justify-between text-sm">
+                <span className="font-mono">{t.symbol}</span>
+                <span className={t.pnl >= 0 ? "text-green-600" : "text-red-600"}>
+                  {t.pnl >= 0 ? "+" : ""}
+                  {t.pnl}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl border p-6">
+          <h2 className="font-medium">Sentiment</h2>
+          <p className="mt-2 text-gray-600">
+            Score: <span className="font-medium">{sentiment?.score ?? "—"}</span>
+          </p>
+          <p className="text-sm text-gray-500">{sentiment?.explanation}</p>
+        </div>
+      </section>
+    </>
   );
 }
+

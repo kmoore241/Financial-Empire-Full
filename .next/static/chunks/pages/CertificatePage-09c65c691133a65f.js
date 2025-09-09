@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[802],{4020:function(n,e,i){(window.__NEXT_P=window.__NEXT_P||[]).push(["/CertificatePage",function(){return i(1111)}])},1111:function(n,e,i){"use strict";i.r(e);var t=i(2676);i(5271),e.default=()=>(0,t.jsx)("div",{children:"Certificate Page"})}},function(n){n.O(0,[888,774,179],function(){return n(n.s=4020)}),_N_E=n.O()}]);

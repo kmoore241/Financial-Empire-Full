@@ -1,1 +1,7 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/404":"pages/404.html","/CertificatePage":"pages/CertificatePage.html","/ConfidenceScore":"pages/ConfidenceScore.html","/LoginPage":"pages/LoginPage.html","/QuizPage":"pages/QuizPage.html","/SettingsPage":"pages/SettingsPage.html","/MaintenancePage":"pages/MaintenancePage.html","/academy":"pages/academy.html","/academy/drills":"pages/academy/drills.html","/academy/news":"pages/academy/news.html","/academy/risk":"pages/academy/risk.html","/api/health":"pages/api/health.js","/api/news":"pages/api/news.js","/api/pnl":"pages/api/pnl.js","/api/sentiment":"pages/api/sentiment.js","/api/trades":"pages/api/trades.js","/bots":"pages/bots.html","/course-detail":"pages/course-detail.html","/dashboard":"pages/dashboard.html","/certificate":"pages/certificate.html","/":"pages/index.html","/login":"pages/login.html","/news":"pages/news.html","/offline":"pages/offline.html","/privacy":"pages/privacy.html","/pricing":"pages/pricing.html","/settings":"pages/settings.html","/terms":"pages/terms.html","/trade-history":"pages/trade-history.html","/wallet":"pages/wallet.html"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/academy": "pages/academy.js"
+}

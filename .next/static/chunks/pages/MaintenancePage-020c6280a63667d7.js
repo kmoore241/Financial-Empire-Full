@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[765],{6616:function(n,e,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/MaintenancePage",function(){return u(9912)}])},9912:function(n,e,u){"use strict";u.r(e);var i=u(2676);u(5271),e.default=()=>(0,i.jsx)("div",{children:"Maintenance Page"})}},function(n){n.O(0,[888,774,179],function(){return n(n.s=6616)}),_N_E=n.O()}]);

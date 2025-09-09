@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[659],{2180:function(n,t,e){(window.__NEXT_P=window.__NEXT_P||[]).push(["/SettingsPage",function(){return e(6532)}])},6532:function(n,t,e){"use strict";e.r(t);var u=e(2676);e(5271),t.default=()=>(0,u.jsx)("div",{children:"Settings Page"})}},function(n){n.O(0,[888,774,179],function(){return n(n.s=2180)}),_N_E=n.O()}]);

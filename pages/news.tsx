@@ -1,5 +1,24 @@
-import View from "@/components/pages/News";
+// pages/news.tsx
+import useSWR from "swr";
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-export default function Page() {
-  return <View />;
+export default function News() {
+  const { data, error, isLoading } = useSWR("/api/news", fetcher);
+
+  return (
+    <>
+      <h1 className="text-2xl font-semibold">Market News</h1>
+      {isLoading && <p className="mt-4 text-gray-500">Loading…</p>}
+      {error && <p className="mt-4 text-red-600">Failed to load news.</p>}
+      <div className="mt-6 grid gap-4">
+        {data?.articles?.map((a: any) => (
+          <a key={a.id ?? a.url} href={a.url} className="rounded-2xl border p-4 hover:bg-gray-50">
+            <div className="text-sm text-gray-500">{a.source}</div>
+            <div className="font-medium">{a.title}</div>
+            <div className="text-sm text-gray-600 mt-1 line-clamp-2">{a.summary}</div>
+          </a>
+        ))}
+      </div>
+    </>
+  );
 }

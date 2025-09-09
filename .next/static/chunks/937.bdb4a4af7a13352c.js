@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[937],{1937:function(e,n,u){u.r(n),u.d(n,{default:function(){return a}});var c=u(2676);function a(){return(0,c.jsx)("div",{className:"p-6",children:"Academy page"})}u(5271)}}]);
