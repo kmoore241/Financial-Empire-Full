@@ -12,4 +12,5 @@
 }
 
 /* your globals */
-body { outline: none; }
+html, body { height: 100%; }
+body { font-feature-settings: "liga" 1, "kern" 1; }}

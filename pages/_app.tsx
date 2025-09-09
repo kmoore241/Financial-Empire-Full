@@ -27,8 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
       </header>
 
       <RootProviders>
+      <AppLayout>
         <Component {...pageProps} />
-      </RootProviders>
-    </>
+      </AppLayout>
+    </RootProviders>
   );
 }
