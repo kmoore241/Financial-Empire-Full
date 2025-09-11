@@ -1,10 +1,8 @@
-// src/layouts/AppLayout.tsx
 import Link from "next/link";
 import { useState } from "react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-
   const nav = [
     { href: "/", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
@@ -16,16 +14,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900">
-      {/* Header */}
       <header className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
         <div className="mx-auto max-w-screen-2xl px-4">
           <div className="flex h-14 items-center justify-between">
             <Link href="/" className="font-semibold tracking-tight">
               Financial<span className="text-brand">Empire</span>
             </Link>
-
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              {nav.map((n) => (
+              {nav.map(n => (
                 <Link key={n.href} href={n.href} className="hover:text-brand">
                   {n.label}
                 </Link>
@@ -37,10 +33,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 Log in
               </Link>
             </nav>
-
             <button
               className="md:hidden rounded-lg border px-3 py-1.5 text-sm"
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => setOpen(v => !v)}
               aria-label="Toggle menu"
             >
               Menu
@@ -49,7 +44,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           {open && (
             <div className="md:hidden pb-4">
               <div className="flex flex-col gap-2">
-                {nav.map((n) => (
+                {nav.map(n => (
                   <Link
                     key={n.href}
                     href={n.href}
@@ -72,12 +67,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      {/* Main */}
       <main className="flex-1">
         <div className="mx-auto max-w-screen-2xl px-4 py-8">{children}</div>
       </main>
 
-      {/* Footer */}
       <footer className="border-t">
         <div className="mx-auto max-w-screen-2xl px-4 py-6 text-sm text-slate-600">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
