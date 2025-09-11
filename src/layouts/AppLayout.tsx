@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
+import { PropsWithChildren } from "react";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function AppLayout({ children }: { PropsWithChildren: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const nav = [
     { href: "/", label: "Home" },
@@ -66,6 +69,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           )}
         </div>
       </header>
+          <div className="min-h-dvh flex flex-col bg-gray-50">
+      <SiteHeader />
+      <main className="container mx-auto w-full flex-1 px-4 py-8">
+        {children}
+      </main>
+      <SiteFooter />
+    </div>
 
       <main className="flex-1">
         <div className="mx-auto max-w-screen-2xl px-4 py-8">{children}</div>
