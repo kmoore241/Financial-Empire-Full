@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
-export default function AppLayout({ children }: { PropsWithChildren: React.ReactNode }) {
+export default function AppLayout({ children }: React.PropsWithChildren) {
   const [open, setOpen] = useState(false);
   const nav = [
     { href: "/", label: "Home" },
