@@ -1,7 +1,7 @@
-import Link from 'next/link';
+// pages/_app.tsx
 import type { AppProps } from "next/app";
 import "@/styles/globals.css";
-import AppLayout from "@/layouts/AppLayout";
+import Link from "next/link";
 import RootProviders from "@/providers/RootProviders";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -26,10 +26,11 @@ export default function App({ Component, pageProps }: AppProps) {
         </nav>
       </header>
 
-      <RootProviders>
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
-    </RootProviders>
+      <main className="mx-auto max-w-screen-2xl px-4 py-8">
+        <RootProviders>
+          <Component {...pageProps} />
+        </RootProviders>
+      </main>
+    </>
   );
 }
