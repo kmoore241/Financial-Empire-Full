@@ -1,8 +1,8 @@
+"use client";
 import Link from "next/link";
 import { useState } from "react";
 
 const nav = [
-  { href: "/", label: "Home" },
   { href: "/dashboard", label: "Dashboard" },
   { href: "/bots", label: "Bots" },
   { href: "/academy", label: "Academy" },
@@ -18,18 +18,18 @@ export default function SiteHeader() {
       <div className="mx-auto max-w-screen-2xl px-4">
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">
-            Financial<span className="text-[--color-brand]">Empire</span>
+            Financial<span className="text-brand">Empire</span>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm md:flex">
+          <nav className="hidden md:flex items-center gap-6 text-sm">
             {nav.map((n) => (
-              <Link key={n.href} href={n.href} className="hover:text-[--color-brand]">
+              <Link key={n.href} href={n.href} className="hover:text-brand">
                 {n.label}
               </Link>
             ))}
             <Link
               href="/login"
-              className="rounded-lg border px-3 py-1.5 text-sm hover:border-[--color-brand] hover:text-[--color-brand]"
+              className="rounded-lg border px-3 py-1.5 text-sm hover:border-brand hover:text-brand"
             >
               Log in
             </Link>
@@ -45,13 +45,13 @@ export default function SiteHeader() {
         </div>
 
         {open && (
-          <div className="pb-4 md:hidden">
+          <div className="md:hidden pb-4">
             <div className="flex flex-col gap-2">
               {nav.map((n) => (
                 <Link
                   key={n.href}
                   href={n.href}
-                  className="rounded-lg px-3 py-2 hover:bg-gray-50"
+                  className="rounded-lg px-3 py-2 hover:bg-slate-50"
                   onClick={() => setOpen(false)}
                 >
                   {n.label}
@@ -59,7 +59,7 @@ export default function SiteHeader() {
               ))}
               <Link
                 href="/login"
-                className="rounded-lg border px-3 py-2 hover:border-[--color-brand] hover:text-[--color-brand]"
+                className="rounded-lg border px-3 py-2 hover:border-brand hover:text-brand"
                 onClick={() => setOpen(false)}
               >
                 Log in
