@@ -1,14 +1,16 @@
-import type { AppProps } from "next/app";
-import "@/styles/globals.css";
-import AppLayout from "@/layouts/AppLayout";
-import RootProviders from "@/providers/RootProviders"; // remove if you don't have it
+// pages/_app.tsx
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AppLayout>
-      <RootProviders>
-        <Component {...pageProps} />
-      </RootProviders>
-    </AppLayout>
-  );
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0B1220" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  )
 }

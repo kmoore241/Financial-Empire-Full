@@ -4,6 +4,10 @@
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @theme {
   --color-brand: #6E56CF;
   --color-brand-foreground: #FFFFFF;
@@ -15,8 +19,3 @@
 html, body { height: 100%; }
 body { font-feature-settings: "liga" 1, "kern" 1; }
 
-@layer utilities {
-  .btn { @apply inline-flex items-center rounded-lg px-4 py-2 text-sm; }
-  .btn-primary { @apply btn bg-brand text-white; }
-  .btn-outline { @apply btn border hover:border-brand hover:text-brand; }
-}
