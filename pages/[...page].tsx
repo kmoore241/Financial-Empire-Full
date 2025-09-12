@@ -1,5 +1,6 @@
 // pages/[...page].tsx
 import Head from "next/head";
+import Link from 'next/link'; 
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { BuilderComponent, builder } from "@builder.io/react";
 
@@ -42,14 +43,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return { props: { content: content ?? null }, revalidate: 60 };
 };
 
-export default function CatchAll({ content }: { content: any }) {
-  if (!content) return <></>; // or your 404 UI
+export default function NotFoundLike() {
   return (
-    <>
-      <Head>
-        <title>{content?.data?.title ?? "Page"}</title>
-      </Head>
-      <BuilderComponent model="page" content={content} />
-    </>
-  );
+    <main style={{padding:'4rem', color:'#e5e7eb', background:'#0b1220', minHeight:'60vh'}}>
+      <h1 style={{fontSize:'1.5rem', fontWeight:700}}>Page not found</h1>
+      <p style={{marginTop:'0.75rem'}}>This route doesn’t exist. Go back to the <Link href="/">home page</Link>.</p>
+      </main>
+  )
 }

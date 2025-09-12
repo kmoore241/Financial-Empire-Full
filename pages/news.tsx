@@ -1,5 +1,6 @@
 // pages/news.tsx
 import useSWR from "swr";
+import AppShell from '@/components/layout/AppShell'
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 export default function News() {
@@ -7,6 +8,15 @@ export default function News() {
 
   return (
     <>
+     <AppShell>
+      <h1 className="text-2xl font-bold">News</h1>
+      <p className="mt-2 text-slate-300">Live feed integration coming. Showing demo headlines.</p>
+      <ul className="mt-4 list-disc pl-5 text-slate-300">
+        <li>Crypto fear/greed ticks to 61 (Greed)</li>
+        <li>ETH L2 volumes up 14% WoW</li>
+      </ul>
+    </AppShell>
+    
       <h1 className="text-2xl font-semibold">Market News</h1>
       {isLoading && <p className="mt-4 text-gray-500">Loading…</p>}
       {error && <p className="mt-4 text-red-600">Failed to load news.</p>}

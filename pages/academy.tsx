@@ -1,4 +1,6 @@
 // pages/academy.tsx
+import AppShell from '@/components/layout/AppShell'
+import Link from 'next/link'
 type Lesson = { title: string; minutes: number };
 type Track = { name: string; desc: string; lessons: Lesson[] };
 
@@ -26,6 +28,17 @@ const TRACKS: Track[] = [
 export default function Academy() {
   return (
     <>
+    <AppShell>
+      <h1 className="text-2xl font-bold">Academy</h1>
+      <ul className="mt-4 space-y-3">
+        <li className="rounded-lg border border-slate-800 bg-slate-900 p-4">
+          <div className="font-medium">Module 0 — Credibility in Trading</div>
+          <div className="text-sm text-slate-400">Real vs fake traders • Spot-the-Scam quiz</div>
+          <Link className="mt-2 inline-block text-blue-400" href="/course-detail">Open</Link>
+        </li>
+      </ul>
+    </AppShell>
+    
       <h1 className="text-2xl font-semibold">Academy</h1>
       <p className="mt-2 text-gray-600">Learn by doing. Short lessons, immediate practice.</p>
       <div className="mt-8 grid gap-6 md:grid-cols-2">
